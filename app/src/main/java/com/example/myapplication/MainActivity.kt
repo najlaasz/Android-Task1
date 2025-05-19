@@ -47,10 +47,12 @@ class MainActivity : ComponentActivity() {
 
                     ){
                         Quastions(
-                            name = "the quastion is "
+                            name = myQuestions.keys.first()
                         )
 
-                        NextQuastion(Color.Red, "Wrong answer")
+//                        AnswerButton()
+
+
 
                     }
                 }
@@ -58,6 +60,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
+val myQuestions = mapOf(
+    "Kuwait is located on the continent of Africa." to false,
+    "The Kuwaiti flag has four colors: red, green, white, and black." to true,
+    "Kuwait is famous for having one of the largest oil reserves in the world." to true
+)
+
 
 @Composable
 fun Quastions(name: String, modifier: Modifier = Modifier) {
@@ -71,23 +81,33 @@ fun Quastions(name: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun QuationsButton(){
+fun AnswerButton(quastion: String){
     Row (
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically) {
-        Button(onClick = {}) {
-            Text(text = "True")
-        }
-
-        Button(onClick = {}) {
-            Text(text = "False")
-        }
+//        Button(onClick = {AnswerCircle(myQuestions[quastion] == true) }) {
+//            Text(text = "True")
+//        }
+//
+//
+//        Button(onClick = { AnswerCircle(myQuestions[quastion] == false) }) {
+//            Text(text = "False")
+//        }
     }
 }
 
 @Composable
-fun NextQuastion(c: Color, t: String){
+fun NextQuastionButton(){
+    Button(onClick = {}) {
+        Text(text = "Next Quastion")
+    }
+}
 
+@Composable
+fun AnswerCircle(answer: Boolean){
+
+    val c = if (answer) Color.Green else Color.Red
+    val t = if (answer) "Correct Answer" else "Wrong Answer"
     Box(
 
         contentAlignment = Alignment.Center,
@@ -106,9 +126,7 @@ fun NextQuastion(c: Color, t: String){
             text = t
             )
     }
-    Button(onClick = {}) {
-        Text(text = "Next Quastion")
-    }
+
 }
 
 @Preview(showBackground = true)
